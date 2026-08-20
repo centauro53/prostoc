@@ -1,0 +1,103 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Pacchetti Matematici Fondamentali ---
+\usepackage{amsmath}   % Strutture matematiche avanzate (es. align)
+\usepackage{amssymb}   % Simboli matematici e font speciali (es. \mathbb pour i reali R)
+\usepackage{amsfonts}  % Font matematici aggiuntivi
+\usepackage{amsthm}    % Gestione di teoremi, definizioni e dimostrazioni
+
+% --- Configurazione dei Teoremi ---
+\newtheorem{theorem}{Teorema}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposizione}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definizione}
+\newtheorem{example}[theorem]{Esempio}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Nota}
+
+\begin{document}
+
+Recall the definitions of $\pi,\lambda$-system:
+\begin{itemize}
+	\item $P$ is a $\pi$-system if: $\forall A \in P \forall B \in P A \cap B \in P$
+	\item $D$ is a $\lambda$-system if: non-empty, closed under complement, closed under countable disjoint union.
+\end{itemize}
+
+\begin{theorem}
+
+	Let $P$ be a $\pi$-system and let $D$ be a $\lambda$-system, with $P \subseteq D$. Then $\sigma(P) \subseteq D$.
+
+\end{theorem}
+
+\begin{proof}
+
+	Let $L := \bigcap_{D' \lambda-system, P \subseteq D'} D'$. It is immediate that $P \subseteq L$ and $L$ is a $\lambda$-system.
+	Fix $B \in P$ and consider $D_B := \{A \in D: A \cap B \in L\}$.
+	Since $B \in P \subseteq L$ and $P$ is $\pi$-system we have that $P \subseteq D_B$.
+	Next we verify that $D_B$ is a $\lambda$-system:
+	\begin{itemize}
+		\item $\Omega \cap B = B \in P \subseteq L$, that is: $\Omega \in D_B$.
+		\item Let $A \in D_B$. Then $A \cap B \in L$ and as a consequence also $B \setminus (A \cap B) \in L$.
+			Equivalently, $A^c \cap B \in L$ and therefore $A^c \in D_B$.
+		\item Let $\{A_n : n < \omega\} be a set of disjoint elements in D_B$. Then $\forall n< \omega \ A_n \cap B \in L$.
+			Since $(\bigsqcup_{n < \omega} A_n) \cap B = \bigsqcup (A_n \cap B) \in L $ we get $\bigsqcup_{n<\omega} A_n \in D_B$. 
+	\end{itemize}
+
+	Then we have $L \subseteq D_B$.
+	Since $B$ is an arbitrary element of $P$, we can say $\forall B \in P \forall A \in L A \cap B \in L$.
+	Now fix $A \in L$ and consider $D_A := \{C \in D: C \cap A \in L\}$.
+	From the observation above we already have $P \subseteq D_A$.
+	Next we verify that $D_A$ is a $\lambda$-system:
+	\begin{itemize}
+		\item $\Omega \cap C = C \in L$.
+		\item $C \in D_A \Rightarrow C \cap A \in L \Rightarrow C^c \cap A \in L$ as before. Then $C^c \in D_A$.
+		\item same as before
+	\end{itemize}
+
+	Again we deduce that $L \subseteq D_A$.
+	Since $A$ is an arbitrary element of $L$ we get that $\forall A \in L \forall C \in L A \cap C \in L$.
+	This means that $L$ is a $\pi$-system.
+	Since $L$ also is a $\lambda$-system, we get that $L$ is both $\pi$ and $\lambda$ system and therefore a $\sigma$-algebra.
+	In particular, since $P \subseteq L \subseteq D$ we get $P \subseteq \sigma(P) \subseteq L \subseteq D$.
+\end{proof}
+
+
+\begin{theorem}
+
+	Let $(X_t)_{t \in T}$ stocastic process. Then TFAE:
+	\begin{enumerate}
+		\item	ind incr
+		\item	for all $0 \leq s \leq t$ we have $X_t - X_s$ independent from $\sigma(X_u : u \leq s)$
+	\end{enumerate}
+
+\end{theorem}
+
+
+\begin{proof}
+
+	\begin{itemize}
+		\item $1 \Rightarrow 2$: 
+			Consider $P := \{X_{u_1}^{-1}(A_1) \cap .. \cap X_{u_n}^{-1}(A_n) : 
+			n < \omega, A_{u_1},..,A_{u_n} \in B(\mathbb{R}^d), u_1,..,u_n \leq s\}$.
+			Then $P$ is a $\pi$-system and $\sigma(P) = \sigma(X_u : u \leq s)$.
+			Now consider $D := \{A : \mathbb{P}(A, X_t - X_s \in B) = \mathbb{P}(A) \cdot \mathbb{P}(X_t - X_s \in B)\}$.
+			It is immediate that $D$ is a $\lambda$-system.
+			Next we verify that $P \subseteq D$.
+			Consider $A:=(X_{u_1} \in A_1,..,X_{u_{n}} \in A_n)$, arbitrary element of $P$ and consider
+			$f: \mathbb{R}^d \to \mathbb{R}^d, (x_1,..,x_n) \mapsto (x_1,x_2 - x_1,..,x_{n} - x_{n-1})$.
+			\begin{align*} 
+				\mathbb{P}(A, X_t - X_s \in B) =& \mathbb{P}((X_{u_1},..,X_{u_n}) \in A_1 \times .. \times A_n, X_t - X_s \in B) \\
+					=& \mathbb{P}(f(X_{u_1},..,X_{u_n}) \in f[A_1 \times .. A_n], X_t - X_s \in B) \\
+				=& \mathbb{P}((X_{u_1},..,X_{u_n} - X_{u_{n-1}}) \in f[A_1 \times .. \times A_n], X_t - X_s \in B) \\
+				=& \mathbb{P}((X_{u_1},..,X_{u_n} - X_{u_{n-1}}) \in f[A_1 \times .. \times A_n]) \cdot \mathbb{P}(X_t - X_s \in B) \\
+				=& \mathbb{P}(f(X_{u_1},..,X_{u_n}) \in f[A_1 \times .. \times A_n]) \cdot \mathbb{P}(X_t - X_s \in B) \\
+				=& \mathbb{P}((X_{u_1},..,X_{u_n}) \in A_1 \times .. \times A_n) \cdot \mathbb{P}(X_t - X_s \in B)
+			\end{align*}
+		
+		\item $2 \Rightarrow 1$: maybe later
+	\end{itemize}
+
+\end{proof}
+\end{document}
+
