@@ -1,0 +1,52 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Pacchetti Matematici Fondamentali ---
+\usepackage{amsmath}   % Strutture matematiche avanzate (es. align)
+\usepackage{amssymb}   % Simboli matematici e font speciali (es. \mathbb pour i reali R)
+\usepackage{amsfonts}  % Font matematici aggiuntivi
+\usepackage{amsthm}    % Gestione di teoremi, definizioni e dimostrazioni
+
+% --- Configurazione dei Teoremi ---
+\newtheorem{theorem}{Teorema}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposizione}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definizione}
+\newtheorem{example}[theorem]{Esempio}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Nota}
+
+\begin{document}
+
+
+
+\begin{theorem}
+
+	Suppose $\mathbb{E}(exp(i \xi \Gamma)) = exp(i m \xi - \frac{\sigma^2 \xi^2}{2})$. Then $m = \mathbb{E}(\Gamma)$ and $\sigma^2 = Var(\Gamma)$.
+
+\end{theorem}
+
+
+
+
+\begin{proof}
+
+	We only examine the case for $m$, since the case for $\sigma^2$ is similar.
+	Observe that $\mathbb{E}(\frac{d}{d\xi} exp(i \xi \Gamma)) = \frac{d}{d\xi} \mathbb{E} exp(i \xi \Gamma)$ (why??).
+	Evaluating both sides we get:
+	\[
+		\mathbb{E}(i \Gamma \cdot \exp(i \xi \Gamma)) = (i m - \sigma^2 \xi) \cdot exp(i m \xi - \frac{\sigma^2 \xi^2}{2})
+	\]
+
+	Evaluating in $\xi = 0$ we obtain:
+
+	\[
+		i \cdot \mathbb{E}(\Gamma) = i \cdot m
+	\]
+
+
+\end{proof}
+
+
+\end{document}
+
