@@ -1,0 +1,66 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Pacchetti Matematici Fondamentali ---
+\usepackage{amsmath}   % Strutture matematiche avanzate (es. align)
+\usepackage{amssymb}   % Simboli matematici e font speciali (es. \mathbb pour i reali R)
+\usepackage{amsfonts}  % Font matematici aggiuntivi
+\usepackage{amsthm}    % Gestione di teoremi, definizioni e dimostrazioni
+
+% --- Configurazione dei Teoremi ---
+\newtheorem{theorem}{Teorema}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposizione}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definizione}
+\newtheorem{example}[theorem]{Esempio}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Nota}
+
+\begin{document}
+
+Let $\vec{\Gamma} = (\Gamma_1,..,\Gamma_n)$ be a random vector. Consider:
+\begin{itemize}
+	\item	$\vec{m} := (\mathbb{E}[\Gamma_1],..,\mathbb{E}[\Gamma_n])$.
+	\item	$\Sigma \in M(n \times n, \mathbb{R})$ such that $\Sigma(i,j) = Cov(\Gamma_i,\Gamma_j) = \mathbb{E}[(\Gamma_i - m_i)(\Gamma_j - m_j)]$.
+\end{itemize}
+
+$\vec{\Gamma}$ is Gaussian iff we can write 
+$\phi_{\vec{\Gamma}}(\vec{\xi}) = exp(i \mathbb{E}[\vec{\xi} \cdot \vec{\Gamma}] - \frac{Var(\vec{\xi} \cdot \vec{\Gamma})}{2})$.
+
+\begin{theorem}
+
+	\begin{itemize}
+		\item	$\mathbb{E}[\vec{\xi} \cdot \vec{\Gamma}] = \vec{\xi} \cdot \vec{m}$
+		\item	$Var(\vec{\xi} \cdot \vec{\Gamma}) = \vec{\xi}^T \cdot \Sigma \cdot \vec{\xi}$
+	\end{itemize}
+
+\end{theorem}
+
+\begin{proof}
+
+	\begin{align*}
+		\mathbb{E}[\vec{\xi} \cdot \vec{\Gamma}] =& \mathbb{E}[\sum_{j=1,..,n} \xi_j \cdot \Gamma_j] \\
+		=& \sum_{j=1,..,n} \xi_j \cdot \mathbb{E}[\Gamma_j] = \sum_{j=1,..,n} \xi_j \cdot m_j = \vec{\xi} \cdot \vec{m}
+	\end{align*}
+
+	\begin{align*}
+		Var(\vec{\xi} \cdot \vec{\Gamma}) =& \mathbb{E}[(\vec{\xi} \cdot \vec{\Gamma})^2] - (\vec{\xi} \cdot \vec{m})^2 \\
+		=& \vec{\xi}^T \cdot \Sigma \cdot \vec{\xi}
+	\end{align*}
+
+	where the last equality follows because of the following:
+
+	\begin{align*}
+		\mathbb{E}[(\vec{\xi} \cdot \vec{\Gamma})^2] =& \mathbb{E}[\sum_{j=1,..,n} \sum_{k=1,..,n} \xi_j \Gamma_j \xi_k \Gamma_k] \\
+		=& \mathbb{E}[\vec{\xi}^T \cdot \Gamma \cdot \Gamma^T \cdot \xi] \\
+		=& \vec{\xi}^T \cdot \mathbb{E}[\vec{\Gamma} \cdot \vec{\Gamma}^T] \cdot \xi
+	\end{align*}
+
+	\[
+		\mathbb{E}[\vec{\Gamma} \cdot \vec{\Gamma}^T ](i,j) = \mathbb{E}[\Gamma_i \cdot \Gamma_j] = \Sigma(i,j) + m_i m_j
+	\]
+
+\end{proof}
+
+\end{document}
+
