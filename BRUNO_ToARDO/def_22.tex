@@ -1,0 +1,59 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Pacchetti Matematici Fondamentali ---
+\usepackage{amsmath}   % Strutture matematiche avanzate (es. align)
+\usepackage{amssymb}   % Simboli matematici e font speciali (es. \mathbb pour i reali R)
+\usepackage{amsfonts}  % Font matematici aggiuntivi
+\usepackage{amsthm}    % Gestione di teoremi, definizioni e dimostrazioni
+
+% --- Configurazione dei Teoremi ---
+\newtheorem{theorem}{Teorema}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposizione}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definizione}
+\newtheorem{example}[theorem]{Esempio}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Nota}
+
+\begin{document}
+
+Let $\vec{\Gamma} = (\Gamma_1,..,\Gamma_n): (\Omega,\mathcal{A}) \to (\mathbb{R}^n, \mathcal{B}(\mathbb{R}^n))$ random vector.
+We say that $\Gamma$ is Gaussian if $\forall \vec{l} \in \mathbb{R}^n \ \vec{l} \cdot \vec{\Gamma}$ is Gaussian.
+
+\begin{theorem}
+
+	$\vec{\Gamma}$ is Gaussian iff 
+	$\forall \vec{\xi} \in \mathbb{R}^n \ \mathbb{E}[exp(i \vec{\xi} \cdot \vec{\Gamma})] = 
+	exp(i \mathbb{E}[\vec{\xi}\cdot \vec{\Gamma}] - \frac{Var(\vec{\xi} \cdot \vec{\Gamma})}{2})$.
+
+\end{theorem}
+
+
+\begin{proof}
+
+	\begin{itemize}
+		\item	$\Rightarrow$: 
+			Let $\vec{\xi} \in \mathbb{R}^n$. Since $\vec{\Gamma}$ is Gaussian, we have $\vec{\xi} \cdot \vec{\Gamma}$ Gaussian.
+			Then $\forall \eta \in \mathbb{R} \phi_{\vec{\xi} \cdot \vec{\Gamma}}(\eta) = 
+			exp(i \mathbb{E}[\vec{\xi} \cdot \vec{\Gamma}] \eta - \frac{Var(\vec{\xi} \cdot \vec{\Gamma}) \eta^2}{2})$.
+			Taking $\eta = 1$ we obtain:
+			\[
+				\mathbb{E}[exp(i \vec{\xi} \vec{\Gamma})] = 
+				exp(i \mathbb{E}[\vec{\xi} \cdot \vec{\Gamma}] - \frac{Var(\vec{\xi} \cdot \vec{\Gamma})}{2})
+			\]
+		\item	$\Leftarrow$:
+			\begin{align*}
+				\phi_{\vec{\xi} \cdot \vec{\Gamma}}(\eta) =& \mathbb{E}[exp(i \vec{\xi} \cdot \vec{\Gamma} \eta)] \\
+				=& \mathbb{E}[exp(i (\eta \vec{\xi}) \cdot \vec{\Gamma})] \\
+				=& exp(i \mathbb{E}[\eta \vec{\xi} \cdot \vec{\Gamma}] - \frac{Var(\eta \vec{\xi} \cdot \vec{\Gamma})}{2}) \\
+				=& exp(i \mathbb{E}[\vec{\xi} \cdot \vec{\Gamma}] \eta - \frac{Var(\vec{\xi} \cdot \vec{\Gamma}) \eta^2}{2})
+			\end{align*}
+
+	\end{itemize}
+
+\end{proof}
+
+
+\end{document}
+
