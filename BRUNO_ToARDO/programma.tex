@@ -1,0 +1,55 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Pacchetti Matematici Fondamentali ---
+\usepackage{amsmath}   % Strutture matematiche avanzate (es. align)
+\usepackage{amssymb}   % Simboli matematici e font speciali (es. \mathbb pour i reali R)
+\usepackage{amsfonts}  % Font matematici aggiuntivi
+\usepackage{amsthm}    % Gestione di teoremi, definizioni e dimostrazioni
+
+% --- Configurazione dei Teoremi ---
+\newtheorem{theorem}{Teorema}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposizione}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definizione}
+\newtheorem{example}[theorem]{Esempio}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Nota}
+
+\begin{document}
+
+2):
+\begin{enumerate}
+	\item	DEF: $1$-dim Gaussian variable
+	\item	Apparently weaker definition of $1$-dim Gaussian variable
+	\item	Moments of $BM^1$
+	\item	DEF: $1$-dim Gaussian process 
+	\item	THM: $X$ stoc proc. Then tfae:
+		\begin{itemize}
+			\item	$X \ BM^1$
+			\item	$X$ $1$-dim Gaussian process with cov matr .., mean vector 0 and continuous paths
+		\end{itemize}
+	\item	Invariance Closure of $BM^1$:
+		\begin{itemize}
+			\item	Reflection
+			\item	Renewal + independence of rnwd process at $a$ from original proc stopped at $a$ 
+			\item	Time inversion
+			\item	Scaling
+		\end{itemize}
+	\item	DEF: Independence of processes
+	\item	THM: $\vec{X}$ stoc proc. tfae:
+		\begin{itemize}
+			\item	$\vec{X}$ satisfies BM0,..,3
+			\item	$\forall n< \omega \forall 0 = t_0 < .. < t_n \forall \vec{\xi_0},..,\vec{\xi_n} \in \mathbb{R}^d
+				\mathbb{E}[exp(i \sum_{j=1,..,n} \vec{\xi_j} \cdot (\vec{X_{t_j}} - \vec{X_{t_{j-1}}})) + i \vec{\xi_0} \cdot \vec{X_{t_0}}]
+				= exp(-\frac{1}{2} \sum_{j=1,..,n} \vec{\xi_j}^T \cdot (t_j - t_{j-1}) Id \cdot \vec{\xi_j})$
+		\end{itemize}
+	\item	THM: $\vec{X}$ stoc proc. tfae:
+		\begin{itemize}
+			\item	$\vec{X}$ $BM^d$
+			\item	$\vec{X^1},..,\vec{X^d}$ independent $BM^1$
+		\end{itemize}
+\end{enumerate}
+
+\end{document}
+
